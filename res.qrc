@@ -1,0 +1,7 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource>
+    <file>images/icons8-checked-16.png</file>
+    <file>images/icons8-cancel-16.png</file>
+    <file>images/icons8-unavailable-16.png</file>
+</qresource>
+</RCC>

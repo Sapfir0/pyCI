@@ -27,7 +27,7 @@
      <string>Первый запуск</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_2">
+   <widget class="QLabel" name="complete">
     <property name="geometry">
      <rect>
       <x>80</x>
@@ -120,32 +120,6 @@
       </widget>
      </item>
     </layout>
-   </widget>
-   <widget class="QPushButton" name="counterBtn">
-    <property name="geometry">
-     <rect>
-      <x>310</x>
-      <y>230</y>
-      <width>80</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>counter</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="counter">
-    <property name="geometry">
-     <rect>
-      <x>310</x>
-      <y>260</y>
-      <width>47</width>
-      <height>13</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>s</string>
-    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">

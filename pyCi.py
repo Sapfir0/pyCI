@@ -3,8 +3,14 @@
 
 import sys  # sys нужен для передачи argv в QApplication
 from PyQt5 import QtWidgets
+from PyQt5.QtGui import QPixmap
+
+sys.path.insert(0, './build/mainwindow')
 import mainwindow  # Это наш конвертированный файл дизайна
+sys.path.insert(0, './build/res')
+import res #ресурс файл
 import os
+
 
 class ExampleApp(QtWidgets.QMainWindow, mainwindow.Ui_MainWindow):
     def __init__(self): #конструктор еб
@@ -15,11 +21,8 @@ class ExampleApp(QtWidgets.QMainWindow, mainwindow.Ui_MainWindow):
         
     def browseFolder(self):
         directory = QtWidgets.QFileDialog.getExistingDirectory(self, "Select project folder")
-
-        if directory:  # не продолжать выполнение, если пользователь не выбрал директорию
-            for file_name in os.listdir(directory):  # для каждого файла в директории
-                self.listWidget.addItem(file_name)   # добавить файл в listWidget
-
+        self.dir.setText(directory)
+        self.complete.setPixmap(QPixmap(":/images/icons8-checked-16.png"))
 
 
 def main():
