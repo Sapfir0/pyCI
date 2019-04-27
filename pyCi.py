@@ -5,10 +5,8 @@ import sys  # sys нужен для передачи argv в QApplication
 from PyQt5 import QtWidgets
 from PyQt5.QtGui import QPixmap
 
-sys.path.insert(0, './build/mainwindow')
-import mainwindow  # Это наш конвертированный файл дизайна
-sys.path.insert(0, './build/res')
-import res #ресурс файл
+from build import mainwindow  # Это наш конвертированный файл дизайна
+from build import res #ресурс файл
 import os
 
 
