@@ -7,8 +7,9 @@ from PyQt5.QtGui import QPixmap
 
 from build import mainwindow  # Это наш конвертированный файл дизайна
 from build import res #ресурс файл
-import os
-
+import os #вроде для получения содержимого директории
+import subprocess #вроде годная вещь
+from subprocess import Popen, PIPE
 
 class ExampleApp(QtWidgets.QMainWindow, mainwindow.Ui_MainWindow):
     def __init__(self): #конструктор еб
@@ -22,10 +23,11 @@ class ExampleApp(QtWidgets.QMainWindow, mainwindow.Ui_MainWindow):
         self.tests.currentIndexChanged.connect(self.testing)
         self.complete.setPixmap(QPixmap(":/images/icons8-cancel-16.png"))
         self.arrow.setPixmap(QPixmap(":/images/icons8-right-16.png"))
-        
+
+
     def browseFolder(self):
         directory = QtWidgets.QFileDialog.getExistingDirectory(self, "Select project folder")
-        def complete(self, var): #не робит как нужно
+        def complete(self, var): 
             self.dir.setText(directory)
             self.changeDir2.setVisible(var)
             self.changeDir.setVisible(not var)
@@ -40,6 +42,12 @@ class ExampleApp(QtWidgets.QMainWindow, mainwindow.Ui_MainWindow):
         else:
             complete(self, False)
 
+        data = subprocess.Popen("git status", cwd=directory, stdout=PIPE).communicate() 
+     #выдается кортеж, с первым аргументм
+        string = data[0]
+        print(string)
+        res = string.find("fatal")
+        print(res)
 
 
 
