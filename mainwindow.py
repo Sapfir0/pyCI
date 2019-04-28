@@ -1,13 +1,12 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
-import sys  # sys нужен для передачи argv в QApplication
 from PyQt5 import QtWidgets
 from PyQt5.QtGui import QPixmap
 
 from build import mainwindow, res  # Это наш конвертированный файл дизайна
 from testingWindow import testing
-import os,subprocess 
+import os
 from subprocess import Popen, PIPE
 
 
@@ -82,14 +81,3 @@ class PyCi(QtWidgets.QMainWindow, mainwindow.Ui_MainWindow):
             self.findedTest.setText("У нас есть тесты для тебя")
             self.goToTestBtn.setVisible(True) 
 
-def main():
-    app = QtWidgets.QApplication(sys.argv)  # Новый экземпляр QApplication
-    window = PyCi()  # Создаём объект класса ExampleApp
-    window.show()  # Показываем окно
-    app.exec_()  # и запускаем приложение
-
-
-
-if __name__ == '__main__':  # Если мы запускаем файл напрямую, а не импортируем
-    main()  # то запускаем функцию main()
- 

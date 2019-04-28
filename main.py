@@ -1,6 +1,6 @@
 import sys
 from PyQt5 import QtWidgets
-import build.mainwindow
+from mainwindow import PyCi
 
 def main():
     app = QtWidgets.QApplication(sys.argv)  # Новый экземпляр QApplication
