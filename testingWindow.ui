@@ -52,7 +52,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="startStress">
        <property name="text">
         <string>startStress</string>
        </property>
@@ -70,13 +70,33 @@
        <item>
         <widget class="QLabel" name="complete">
          <property name="text">
-          <string> </string>
+          <string/>
          </property>
         </widget>
        </item>
       </layout>
      </item>
     </layout>
+   </widget>
+   <widget class="QListWidget" name="errors">
+    <property name="geometry">
+     <rect>
+      <x>270</x>
+      <y>80</y>
+      <width>121</width>
+      <height>171</height>
+     </rect>
+    </property>
+    <item>
+     <property name="text">
+      <string>Создаем юзеров</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Пишем статьи</string>
+     </property>
+    </item>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">

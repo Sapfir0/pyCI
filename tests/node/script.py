@@ -36,6 +36,7 @@ def signIn():
                                                 "password": "1234567" })
     if (req.status_code != 200):
         print("Авторизация провалена")
+        return False
 
 
 def postArticle(header,content):
@@ -43,6 +44,7 @@ def postArticle(header,content):
                                                         "content": content })
     if (req.status_code != 200):
         print("Статья не отправлена")
+        return False
 
 
 def stressUsers(countUsers):
@@ -50,13 +52,15 @@ def stressUsers(countUsers):
         randomEmail = stringGenerator(random.randint(7, 20))+"@mail.ru"
         randomLogin = stringGenerator(random.randint(5, 15))
         randomPassword = stringGenerator(random.randint(5, 25))
-        register(randomEmail, randomLogin, randomPassword)
+        if ( not register(randomEmail, randomLogin, randomPassword) ):
+            return False
 
 def stessArticles(countArticles):
     for i in range(1, countArticles):
         randomHeader = stringGenerator(random.randint(20, 65))
         randomContent = stringGenerator(random.randint(5000, 45000))
-        postArticle(randomHeader, randomContent)
+        if ( not postArticle(randomHeader, randomContent) ):
+            return False
 
 
 def runStressTest():
