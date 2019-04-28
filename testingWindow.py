@@ -3,42 +3,41 @@
 
 import sys  # sys нужен для передачи argv в QApplication
 from PyQt5 import QtWidgets
-from PyQt5.QtGui import QPixmap
+from PyQt5.QtGui import QPixmap, QIcon
 
 from build import testingWindow 
 from build import res #ресурс файл
 
-#import tests.node.script
-from tests.node.script import stressUsers, stessArticles
+from tests.node.script import stressUsers, stessArticles, getMethods
+counter=0
 
-class testing(QtWidgets.QMainWindow):
+class testing(QtWidgets.QMainWindow, testingWindow.Ui_MainWindow):
     def __init__(self): #конструктор еб
         super().__init__()
-        self.setupUi(self)  # Это нужно для инициализации нашего дизайна
+        self.setupUi(self)  
         self.complete.setPixmap(QPixmap(":/images/icons8-unavailable-16.png"))
-        self.startStress.clicked.connect(self.startStress)
-        self.errors.setVisible(False)
+        self.startStressBtn.clicked.connect(self.startStress)
         
+        self.errors.setVisible(False)
+        self.progressBar.setVisible(False)
 
 
     def startStress(self):
+        if ( not getMethods):
+            self.description.setText("Сайт не отвечает")
+
         self.errors.setVisible(True)
-        stressUsers()
-        
-        stessArticles()
-        #self.errors.set#выставить иконки процесса, выполнения и провала
+        self.progressBar.setVisible(True)
+
+        #stressUsers(1000)
+        #stessArticles(1000)
+        data = "Проверяем доступность сайта", "Создаем юзеров", "Пишем статьи"
+        def insertRows():
+            for i in range(0,len(data)):
+                self.errors.addItem(data[i])
+                self.errors.item(i).setIcon(QIcon(":/images/icons8-unavailable-16.png"))
+                counter+=1
+        if(counter==0):
+            insertRows()
 
         
-
-
-def main():
-    app = QtWidgets.QApplication(sys.argv)  # Новый экземпляр QApplication
-    window = testing()  # Создаём объект класса ExampleApp
-    window.show()  # Показываем окно
-    app.exec_()  # и запускаем приложение
-
-
-
-if __name__ == '__main__':  # Если мы запускаем файл напрямую, а не импортируем
-    main()  # то запускаем функцию main()
- 

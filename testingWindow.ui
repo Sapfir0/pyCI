@@ -54,7 +54,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="startStress">
+        <widget class="QPushButton" name="startStressBtn">
          <property name="text">
           <string>startStress</string>
          </property>
@@ -76,23 +76,19 @@
            </property>
           </widget>
          </item>
+         <item>
+          <widget class="QLabel" name="description">
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
         </layout>
        </item>
       </layout>
      </item>
      <item>
-      <widget class="QListWidget" name="errors">
-       <item>
-        <property name="text">
-         <string>Создаем юзеров</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Пишем статьи</string>
-        </property>
-       </item>
-      </widget>
+      <widget class="QListWidget" name="errors"/>
      </item>
     </layout>
    </widget>

@@ -36,9 +36,8 @@ class PyCi(QtWidgets.QMainWindow, mainwindow.Ui_MainWindow):
         self.arrow_2.setPixmap(QPixmap(":/images/icons8-right-16.png"))
 
     def goToTest(self):
-        # self.w2 = testing()
-        # self.w2.show()
-        myDialog = testing()
+        self.w2 = testing()
+        self.w2.show()
         
 
     def browseFolder(self):

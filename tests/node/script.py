@@ -41,7 +41,7 @@ def signIn():
 
 def postArticle(header,content):
     req = requests.post(url+"/createArticle", data  = {"header": header, 
-                                                        "content": content })
+                                                        "art": content })
     if (req.status_code != 200):
         print("Статья не отправлена")
         return False
@@ -69,5 +69,3 @@ def runStressTest():
 
 # getMethods()
 # runStressTest()
-
-
