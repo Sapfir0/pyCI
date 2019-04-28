@@ -11,7 +11,7 @@ from build import res #ресурс файл
 #import tests.node.script
 from tests.node.script import stressUsers, stessArticles
 
-class testingWindow(QtWidgets.QMainWindow, mainwindow.Ui_MainWindow):
+class testing(QtWidgets.QMainWindow):
     def __init__(self): #конструктор еб
         super().__init__()
         self.setupUi(self)  # Это нужно для инициализации нашего дизайна

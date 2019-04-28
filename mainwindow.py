@@ -6,7 +6,7 @@ from PyQt5 import QtWidgets
 from PyQt5.QtGui import QPixmap
 
 from build import mainwindow, res  # Это наш конвертированный файл дизайна
-from build import testingWindow
+from testingWindow import testing
 import os,subprocess 
 from subprocess import Popen, PIPE
 
@@ -22,37 +22,56 @@ class PyCi(QtWidgets.QMainWindow, mainwindow.Ui_MainWindow):
         self.goToTestBtn.clicked.connect(self.goToTest)
 
         self.tests.currentIndexChanged.connect(self.testing)
+        
         self.complete.setPixmap(QPixmap(":/images/icons8-cancel-16.png"))
-        self.arrow.setPixmap(QPixmap(":/images/icons8-right-16.png"))
+        self.complete_2.setPixmap(QPixmap(":/images/icons8-cancel-16.png"))
+        self.complete_3.setPixmap(QPixmap(":/images/icons8-cancel-16.png"))
 
+        # def setImg(self, widget, pixmap, countSimilarWidget):
+        #     for i in range(0, countSimilarWidget+1):
+        #         #widget.setPixmap(QPixmap(pixmap))
+        #         widget+=
+
+        #setImg(self.arrow, "arrow", ":/images/icons8-right-16.png", 2)    
+        self.arrow.setPixmap(QPixmap(":/images/icons8-right-16.png"))
+        self.arrow_2.setPixmap(QPixmap(":/images/icons8-right-16.png"))
 
     def goToTest(self):
-        self.w2 = testingWindow()
-        self.w2.show()
+        # self.w2 = testing()
+        # self.w2.show()
+        myDialog = testing()
+        
 
     def browseFolder(self):
         directory = QtWidgets.QFileDialog.getExistingDirectory(self, "Select project folder")
-        def complete(self, var): 
+        def complete(self, bool, string=""): 
             self.dir.setText(directory)
-            self.changeDir2.setVisible(var)
-            self.changeDir.setVisible(not var)
-            if (var == True):   
+            self.description.setText(string)
+            self.changeDir2.setVisible(bool)
+            self.changeDir.setVisible(not bool)
+            if (bool  == True):   
                 self.complete.setPixmap(QPixmap(":/images/icons8-checked-16.png"))
             else: 
                 self.complete.setPixmap(QPixmap(":/images/icons8-cancel-16.png"))
-            self.dir.setEnabled(not var)
+            self.dir.setEnabled(not bool)
         
         if (directory != ''):
             complete(self, True)
         else:
-            complete(self, False)
+            complete(self, False, "Директория не найдена")
             return
 
-        data = subprocess.Popen("git status", cwd=directory, stdout=PIPE).communicate() 
-        #выдается кортеж, с первым аргументм
-        #если удалось найти fatal, выдать ошибку
-        #если нашли fatal, обрабатываем следующие слова и выдаем ошибку
+        data = subprocess.Popen("git status", cwd=directory, stdout=PIPE, stderr=PIPE).communicate() 
+        
+        string = ""
+        for i in range(0, len(data)):
+            string += str(data[i])
+        print(string)
+        print(string.find("fatal:"))
 
+        if ( string.find("fatal:") != -1 ): #ух 
+            complete(self, False, "Git репозиторий не найден")
+        
 
 
     def testing(self): 

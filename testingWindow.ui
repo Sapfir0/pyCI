@@ -27,76 +27,74 @@
      <string>Тесты</string>
     </property>
    </widget>
-   <widget class="QWidget" name="verticalLayoutWidget_2">
+   <widget class="QWidget" name="horizontalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>70</y>
-      <width>191</width>
-      <height>181</height>
+      <x>100</x>
+      <y>90</y>
+      <width>421</width>
+      <height>231</height>
      </rect>
     </property>
-    <layout class="QVBoxLayout" name="verticalLayout_2">
+    <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <widget class="QLabel" name="label_2">
-       <property name="text">
-        <string>Стресс-тест</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="label_3">
-       <property name="text">
-        <string>Создает 1к юзеров 1к статей</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="startStress">
-       <property name="text">
-        <string>startStress</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <layout class="QVBoxLayout" name="verticalLayout">
+      <layout class="QVBoxLayout" name="verticalLayout_2">
        <item>
-        <widget class="QProgressBar" name="progressBar">
-         <property name="value">
-          <number>24</number>
+        <widget class="QLabel" name="label_2">
+         <property name="text">
+          <string>Стресс-тест</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="complete">
+        <widget class="QLabel" name="label_3">
          <property name="text">
-          <string/>
+          <string>Создает 1к юзеров 1к статей</string>
          </property>
         </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="startStress">
+         <property name="text">
+          <string>startStress</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout">
+         <item>
+          <widget class="QProgressBar" name="progressBar">
+           <property name="value">
+            <number>24</number>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="complete">
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </item>
       </layout>
      </item>
+     <item>
+      <widget class="QListWidget" name="errors">
+       <item>
+        <property name="text">
+         <string>Создаем юзеров</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Пишем статьи</string>
+        </property>
+       </item>
+      </widget>
+     </item>
     </layout>
-   </widget>
-   <widget class="QListWidget" name="errors">
-    <property name="geometry">
-     <rect>
-      <x>270</x>
-      <y>80</y>
-      <width>121</width>
-      <height>171</height>
-     </rect>
-    </property>
-    <item>
-     <property name="text">
-      <string>Создаем юзеров</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Пишем статьи</string>
-     </property>
-    </item>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
