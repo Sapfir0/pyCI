@@ -8,7 +8,7 @@ from build import mainwindow, res  # Это наш конвертированн�
 from testingWindow import testing
 import os
 from subprocess import Popen, PIPE
-
+import subprocess
 
 class PyCi(QtWidgets.QMainWindow, mainwindow.Ui_MainWindow):
     def __init__(self): #конструктор еб
@@ -26,12 +26,6 @@ class PyCi(QtWidgets.QMainWindow, mainwindow.Ui_MainWindow):
         self.complete_2.setPixmap(QPixmap(":/images/icons8-cancel-16.png"))
         self.complete_3.setPixmap(QPixmap(":/images/icons8-cancel-16.png"))
 
-        # def setImg(self, widget, pixmap, countSimilarWidget):
-        #     for i in range(0, countSimilarWidget+1):
-        #         #widget.setPixmap(QPixmap(pixmap))
-        #         widget+=
-
-        #setImg(self.arrow, "arrow", ":/images/icons8-right-16.png", 2)    
         self.arrow.setPixmap(QPixmap(":/images/icons8-right-16.png"))
         self.arrow_2.setPixmap(QPixmap(":/images/icons8-right-16.png"))
 

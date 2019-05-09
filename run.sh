@@ -1,5 +1,9 @@
 #!/bin/bash
 
+if ! [ -d ./build ]; then
+    mkdir ./build
+fi
+
 pyuic5 ./mainwindow.ui -o ./build/mainwindow.py
 pyuic5 ./testingWindow.ui -o ./build/testingWindow.py
 
