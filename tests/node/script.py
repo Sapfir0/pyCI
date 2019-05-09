@@ -16,6 +16,14 @@ def getMethods():
         if (req.status_code != 200):
             print("GET запрос провалился на " + url+i)
             return False
+    # for j in range(1, 999999999, 1):
+    #     articlePages = "/post/" + str(j)
+    #     print(url+articlePages)
+    #     req = requests.get(url+articlePages)
+    #     if (req.status_code != 200): #надо добавить ответ
+    #         print("У нас на сайте " + str(j) + " страниц со статьями!")
+    #         break
+
     return True
 
 

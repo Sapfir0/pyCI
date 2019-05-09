@@ -14,14 +14,6 @@ import os
 import urllib.request
 from threading import Thread
 
-
-# class myThread (Thread):
-#     def __init__(self):
-#         Thread.__init__(self)
-#     def run(self):
-#         print("Thread was started")
-
-    
 from PyQt5.QtCore import QBasicTimer
 import time
 
@@ -46,39 +38,41 @@ class testing(QtWidgets.QMainWindow, testingWindow.Ui_MainWindow):
         else:
             self.errors.item(0).setIcon(QIcon(":/images/icons8-checked-16.png"))
 
+        getMethods()
         #self.errors.setVisible(True)
         self.progressBar.setVisible(True)
         self.progressBar.setValue(0)
     
-        stressCount = 20
-
+        stressCount = 5
+#в среднем, юзер создается за 0.3с, статья 0.0089с
+        sleepTime = ((0.34+0.0089)*stressCount)/100
         def setProgress(val):
             if (val>=100):
                 return
             val=val+1
             print(val)
             self.progressBar.setValue(val)
-            time.sleep(0.05)
+            time.sleep(sleepTime)
             setProgress(val)
 
         
         thread1 = Thread(target=stressUsers, args=(stressCount,))
         thread2= Thread(target=stessArticles, args=(stressCount,))
-        thread3 = Thread(target=setProgress, args=(2,))
-        
+        thread3 = Thread(target=setProgress, args=(1,))
+
 
         threads = [thread1, thread2, thread3]
 
         for i in threads:
             i.start()
 
+        for i in threads:
+            i.join()
 
         self.errors.item(1).setIcon(QIcon(":/images/icons8-checked-16.png"))
         # signIn()
         self.errors.item(2).setIcon(QIcon(":/images/icons8-checked-16.png"))
 
-        for i in threads:
-            i.join()
 
 
 

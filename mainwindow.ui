@@ -109,7 +109,7 @@
          <item>
           <widget class="QLabel" name="description">
            <property name="text">
-            <string> </string>
+            <string/>
            </property>
           </widget>
          </item>
@@ -231,7 +231,7 @@
           </spacer>
          </item>
          <item>
-          <widget class="QComboBox" name="comboBox">
+          <widget class="QComboBox" name="deploymentComboBox">
            <item>
             <property name="text">
              <string>Heroku</string>
@@ -253,7 +253,7 @@
           </spacer>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton">
+          <widget class="QPushButton" name="deploymentBtn">
            <property name="text">
             <string>Развернуть</string>
            </property>

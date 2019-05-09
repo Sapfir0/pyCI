@@ -11,6 +11,8 @@ from subprocess import Popen, PIPE
 import subprocess
 
 class PyCi(QtWidgets.QMainWindow, mainwindow.Ui_MainWindow):
+    directory = ""
+
     def __init__(self): #конструктор еб
         super().__init__()
         self.setupUi(self)  # Это нужно для инициализации нашего дизайна
@@ -21,6 +23,9 @@ class PyCi(QtWidgets.QMainWindow, mainwindow.Ui_MainWindow):
         self.goToTestBtn.clicked.connect(self.goToTest)
 
         self.tests.currentIndexChanged.connect(self.testing)
+
+        self.deploymentBtn.clicked.connect(self.deployment)
+        self.deploymentBtn.setEnabled(False)
         
         self.complete.setPixmap(QPixmap(":/images/icons8-cancel-16.png"))
         self.complete_2.setPixmap(QPixmap(":/images/icons8-cancel-16.png"))
@@ -32,12 +37,15 @@ class PyCi(QtWidgets.QMainWindow, mainwindow.Ui_MainWindow):
     def goToTest(self):
         self.w2 = testing()
         self.w2.show()
-        
+
+    def deployment(self):
+        data = subprocess.Popen("heroku login", cwd=self.directory, stdout=PIPE, stderr=PIPE).communicate() 
+        print(data)
 
     def browseFolder(self):
-        directory = QtWidgets.QFileDialog.getExistingDirectory(self, "Select project folder")
+        self.directory = QtWidgets.QFileDialog.getExistingDirectory(self, "Select project folder")
         def complete(self, bool, string=""): 
-            self.dir.setText(directory)
+            self.dir.setText(self.directory)
             self.description.setText(string)
             self.changeDir2.setVisible(bool)
             self.changeDir.setVisible(not bool)
@@ -47,23 +55,28 @@ class PyCi(QtWidgets.QMainWindow, mainwindow.Ui_MainWindow):
                 self.complete.setPixmap(QPixmap(":/images/icons8-cancel-16.png"))
             self.dir.setEnabled(not bool)
         
-        if (directory != ''):
-            complete(self, True)
-        else:
-            complete(self, False, "Директория не найдена")
-            return
 
-        data = subprocess.Popen("git status", cwd=directory, stdout=PIPE, stderr=PIPE).communicate() 
-        
-        string = ""
-        for i in range(0, len(data)):
-            string += str(data[i])
-        print(string)
-        print(string.find("fatal:"))
+        def isGitRepository(directory):
+            data = subprocess.Popen("git status", cwd=directory, stdout=PIPE, stderr=PIPE).communicate() 
+            string = ""
+            for i in range(0, len(data)):
+                string += str(data[i])
 
-        if ( string.find("fatal:") != -1 ): #ух 
-            complete(self, False, "Git репозиторий не найден")
-        
+            if ( string.find("fatal:") != -1 ): #ух 
+                complete(self, False, "Git репозиторий не найден")
+
+        def isDirectory(directory):
+            if (directory != ''):
+                self.deploymentBtn.setEnabled(True)
+                complete(self, True)
+            else:
+                self.deploymentBtn.setEnabled(False)
+                complete(self, False, "Директория не найдена")
+                return
+                
+        isDirectory(self.directory)
+        isGitRepository(self.directory)
+
 
 
     def testing(self): 
