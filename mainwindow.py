@@ -33,6 +33,9 @@ class PyCi(QtWidgets.QMainWindow, mainwindow.Ui_MainWindow):
 
         self.arrow.setPixmap(QPixmap(":/images/icons8-right-16.png"))
         self.arrow_2.setPixmap(QPixmap(":/images/icons8-right-16.png"))
+    def subOpen(self, query, directory=None):
+        data = subprocess.Popen(query, cwd=directory, stdout=PIPE, stderr=PIPE).communicate() 
+        return data
 
     def goToTest(self):
         self.w2 = testing()
@@ -41,6 +44,13 @@ class PyCi(QtWidgets.QMainWindow, mainwindow.Ui_MainWindow):
     def deployment(self):
         data = subprocess.Popen("heroku login", cwd=self.directory, stdout=PIPE, stderr=PIPE).communicate() 
         print(data)
+        #heroku git:remote -a metida
+        #git push master heroku
+        #heroku addons:create cleardb:ignite
+        #heroku config | grep CLEARDB_DATABASE_URL #вводим это, и парсим строку
+        # mysql://username:password@host/database?reconnect=true
+        
+        
 
     def browseFolder(self):
         self.directory = QtWidgets.QFileDialog.getExistingDirectory(self, "Select project folder")
@@ -87,3 +97,12 @@ class PyCi(QtWidgets.QMainWindow, mainwindow.Ui_MainWindow):
             self.findedTest.setText("У нас есть тесты для тебя")
             self.goToTestBtn.setVisible(True) 
 
+
+    def allIsOk(self, directory):
+        buttonReply = QtWidgets.QMessageBox.question(self, 'Оповещение', "C этого момента к директории <b>" + directory + "</b> подключена непрерывная интеграция. <br> Я надеюсь, что была указана корневая папка в репозитории. Я временно исчезну, появлюсь только после создания первого локального коммита. <br> Если все  верно, жмякаем да", QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No, QtWidgets.QMessageBox.No)
+        if buttonReply == QtWidgets.QMessageBox.Yes:
+            print('Yes clicked.')
+            return True
+        else:
+            print('No clicked.')
+            return False
