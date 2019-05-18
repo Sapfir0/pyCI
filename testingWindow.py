@@ -43,7 +43,7 @@ class testing(QtWidgets.QMainWindow, testingWindow.Ui_MainWindow):
         self.progressBar.setVisible(True)
         self.progressBar.setValue(0)
     
-        stressCount = 5
+        stressCount = 45
 #в среднем, юзер создается за 0.3с, статья 0.0089с
         sleepTime = ((0.34+0.0089)*stressCount)/100
         def setProgress(val):

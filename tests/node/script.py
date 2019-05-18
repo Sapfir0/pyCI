@@ -49,10 +49,11 @@ def signIn():
         print("Авторизация провалена")
 
 
-def postArticle(header,disclaimer,content):
+def postArticle(header,disclaimer,content, authorId):
     req = requests.post(url+"/createArticle", data  = {"header": header, 
                                                         "disclaimer": disclaimer, 
-                                                        "art": content })
+                                                        "content": content,
+                                                        "authorId": authorId })
     # if (req.status_code != 200): #на нашем сайте это реализовано как говно
     #     print("Статья не отправлена")
     #     return False
@@ -72,7 +73,8 @@ def stessArticles(countArticles):
         randomHeader = stringGenerator(random.randint(20, 65))
         randomDisclaymer = stringGenerator(random.randint(20,200))
         randomContent = stringGenerator(random.randint(1000, 20000))
-        t = timeit.Timer(lambda: postArticle(randomHeader, randomDisclaymer, randomContent))
+        randomAuthorId = random.randint(0,200)
+        t = timeit.Timer(lambda: postArticle(randomHeader, randomDisclaymer, randomContent, randomAuthorId))
         print("Статья №" + str(i) + " написана. Время выполнения " + str(t.timeit(number=1)))
         
 
@@ -80,8 +82,8 @@ def stessArticles(countArticles):
 
 
 def runStressTest():
-    stressUsers(1000)
-    stessArticles(300)
+    signIn()
+    stessArticles(45)
 
 # getMethods()
-# runStressTest()
+runStressTest()
